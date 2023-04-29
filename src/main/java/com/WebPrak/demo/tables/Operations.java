@@ -3,6 +3,8 @@ package com.WebPrak.demo.tables;
 import lombok.*;
 
 import jakarta.persistence.*;
+
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -20,25 +22,31 @@ public class Operations implements CommonEntity<Long>{
     @Column(nullable = false, name = "operation_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "account_id")
     @ToString.Exclude
     @NonNull
-    private Integer account_id;
+    private Accounts account_id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
     @ToString.Exclude
     @NonNull
-    private Integer department_id;
+    private Departments department_id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "op_type_id")
     @ToString.Exclude
     @NonNull
-    private Integer op_type_id;
+    private Operation_type op_type_id;
 
-    @Column(name = "info")
-    private String info;
+    @Column(nullable = false, name = "date")
+    @NonNull
+    private Timestamp date;
+
+    @Column(nullable = false, name = "amount")
+    @NonNull
+    private Float amount;
+
 
 }

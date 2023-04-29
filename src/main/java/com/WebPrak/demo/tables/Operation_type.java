@@ -1,8 +1,12 @@
 package com.WebPrak.demo.tables;
 
+import jdk.dynalink.Operation;
 import lombok.*;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -11,7 +15,6 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @RequiredArgsConstructor
 
 public class Operation_type implements CommonEntity<Long> {
@@ -23,4 +26,7 @@ public class Operation_type implements CommonEntity<Long> {
     @Column(nullable = false, name = "op_type")
     @NonNull
     private String type;
+
+    @OneToMany(mappedBy = "op_type_id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Operations> operations = new ArrayList<>();
 }

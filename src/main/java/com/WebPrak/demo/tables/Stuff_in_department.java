@@ -10,20 +10,36 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @RequiredArgsConstructor
-public class Stuff_in_department{
+public class Stuff_in_department implements CommonEntity<Long> {
+
     @Id
-    @ManyToOne(fetch = FetchType.EAGER)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, name = "id")
+    private Long id;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
     @ToString.Exclude
     @NonNull
-    private Integer department_id;
+    private Departments department_id;
 
-    @Id
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "stuff_id")
     @ToString.Exclude
     @NonNull
-    private Integer stuff_id;
+    private Stuff stuff_id;
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) { return false; }
+        if (obj.getClass() != this.getClass()) { return false; }
+        final Stuff_in_department other = (Stuff_in_department) obj;
+        return  (this.id == other.id) &&
+                (this.department_id.equals(other.department_id)) &&
+                (this.stuff_id.equals(other.stuff_id));
+    }
 
 }

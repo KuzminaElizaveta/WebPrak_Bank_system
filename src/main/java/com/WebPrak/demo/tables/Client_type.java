@@ -3,7 +3,9 @@ package com.WebPrak.demo.tables;
 import lombok.*;
 
 import jakarta.persistence.*;
-import java.util.Objects;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Type")
@@ -23,4 +25,7 @@ public class Client_type implements CommonEntity<Long> {
     @Column(nullable = false, name = "type")
     @NonNull
     private String type;
+
+    @OneToMany(mappedBy = "type_id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Clients> clients = new ArrayList<>();
 }

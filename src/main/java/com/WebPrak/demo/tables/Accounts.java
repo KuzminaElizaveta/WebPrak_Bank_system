@@ -3,6 +3,9 @@ package com.WebPrak.demo.tables;
 import lombok.*;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.sql.Date;
 
@@ -21,17 +24,17 @@ public class Accounts implements CommonEntity<Long>{
     @Column(nullable = false, name = "account_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     @ToString.Exclude
     @NonNull
-    private Long client_id;
+    private Clients client_id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "acc_type_id")
     @ToString.Exclude
     @NonNull
-    private Long acc_type_id;
+    private Account_type acc_type_id;
 
     @Column(nullable = false, name = "balance")
     @NonNull
@@ -52,4 +55,7 @@ public class Accounts implements CommonEntity<Long>{
     @Column(nullable = false, name = "period")
     @NonNull
     private Integer period;
+
+    @OneToMany(mappedBy = "account_id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Operations> clients = new ArrayList<>();
 }

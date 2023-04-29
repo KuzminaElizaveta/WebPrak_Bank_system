@@ -1,4 +1,4 @@
-package com.Webprac;
+package com.WebPrak.demo;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +26,7 @@ public class HibernateDatabaseConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(oraDataSource());
-        sessionFactory.setPackagesToScan("com.WebPrac.demo.tables");
+        sessionFactory.setPackagesToScan("com.WebPrak.demo.tables");
 
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
