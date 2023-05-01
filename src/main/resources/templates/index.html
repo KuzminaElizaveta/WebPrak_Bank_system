@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Главная страница</title>
+
+  <link rel="stylesheet" th:href="@{/style.css}">
+
+  <meta charset="utf-8">
+</head>
+
+
+<body>
+
+
+
+  <div class="wrapper">
+    <div th:replace="general :: page-header"></div>
+
+    <div class="content">
+      <h1>Добро пожаловать!</h1>
+      Для работы с системой перейдите в одну из страниц. <br/>
+
+      Если вы не являетесь уполномоченным лицом, покиньте страницу! <br/>
+    </div>
+
+
+
+    <div th:replace="general :: footer"></div>
+
+  </div>
+
+
+
+</body>
+</html>

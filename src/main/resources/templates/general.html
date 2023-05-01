@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+
+  <title></title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+<!--page header-->
+<div th:fragment="page-header" class="page-header" id="menu">
+  <ul id="navbar">
+    <li class="nav-item">
+      <a class="nav-link" id="rootLink" href="/">Главная</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="clients" th:href="@{clients}">Клиенты</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="accounts" th:href="@{accounts}">Счета</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="operations" th:href="@{operations}">Операции</a>
+    </li>
+    <div class="violet">
+      <h1>Violet bank</h1>
+    </div>
+  </ul>
+
+</div>
+
+<!--end of page header-->
+
+
+<div th:fragment="footer" class="footer">
+  <p>
+    Web-prak project
+    <br>
+    Elizaveta Kuzmina, 2023
+    <br>
+  </p>
+</div>
+</body>
+</html>
