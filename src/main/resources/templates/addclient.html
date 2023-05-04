@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Клиенты</title>
+
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+
+    <meta charset="utf-8">
+</head>
+
+
+<body>
+
+
+
+<div class="wrapper">
+    <div th:replace="general :: page-header"></div>
+
+    <div class="content">
+        <div class="clientDesc">
+            <form th:action="@{/add_new_client}" method="post">
+                <input name="fullname" placeholder="fullname"/>
+                <input name="address" placeholder="address"/>
+                <input name="phone" placeholder="phone"/>
+                <input name="email" placeholder="email"/>
+                <input name="type" placeholder="type"/>
+                <input type="date" name="birthday" placeholder="date"/>
+                <input type="submit" value="Submit"/>
+            </form>
+        </div>
+    </div>
+
+
+    <div th:replace="general :: footer"></div>
+
+</div>
+</body>
+</html>

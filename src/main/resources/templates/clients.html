@@ -4,6 +4,7 @@
     <title>Клиенты</title>
 
     <link rel="stylesheet" th:href="@{/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 
     <meta charset="utf-8">
 </head>
@@ -18,13 +19,15 @@
 
     <div class="content">
         <h1>Клиенты</h1>
+        <a th:href="'/addclient'" class="button7">Добавить нового клиента</a>
         <div class="clientsFilters">
             Фильтры:
-            <form action="/clients" method="get">
-                <input type="text" name="fullname" th:value="${param.fullname}" placeholder="ФИО"/>
+            <form action="/clients"  method="get">
+                <input name="fullname" th:value="${param.fullname}" placeholder="ФИО"/>
                 <input name="address" th:value="${param.address}" placeholder="Адрес"/>
                 <input name="phone" th:value="${param.phone}" placeholder="Телефон"/>
                 <input name="email" th:value="${param.email}" placeholder="Почта"/>
+                <input name="type" th:value="${param.type}" placeholder="Тип"/>
                 <input type="Date" id="birthday" name="birthday" th:value="${param.birthday}" placeholder="Дата рождения"/>
                 <input type="submit" value="Применить"/>
                 <input type="reset" value="Очистить"/>
@@ -33,27 +36,27 @@
 
         <div class="clientsInfo">
             <table>
-                <div class="thead">
                 <thead>
                     <tr>
                         <th scope="col">ФИО</th>
                         <th scope="col">Адрес</th>
                         <th scope="col">Телефон</th>
                         <th scope="col">Почта</th>
+                        <th scope="col">Тип</th>
                         <th scope="col">Дата рождения</th>
                     </tr>
                 </thead>
-                </div>
 
                 <tbody>
                     <tr th:each="client, iter: ${clients}">
                         <td>
                             <a th:text="${client.getFullname()}" th:href="'/client?client_id=' + ${client.getId()}"></a>
                         </td>
-                        <td th:text="${client.getAddress()}"></td><br>
-                        <td th:text="${client.getPhone()}"></td><br>
-                        <td th:text="${client.getEmail()}"></td><br>
-                        <td th:text="${client.getBirthday()}"></td><br>
+                        <td th:text="${client.getAddress()}"></td>
+                        <td th:text="${client.getPhone()}"></td>
+                        <td th:text="${client.getEmail()}"></td>
+                        <td th:text="${client.getType_id().getType()}"></td>
+                        <td th:text="${client.getBirthday()}"></td>
                     </tr>
                 </tbody>
             </table>

@@ -68,6 +68,9 @@ public class ClientDAOImplement extends CommonDAOImplement<Clients, Long> implem
             if (filter.getEmail() != null)
                 predicates.add(builder.like(root.get("email"), likeExpr(filter.getEmail())));
 
+            if (filter.getType_id() != null)
+                predicates.add(builder.equal(root.get("type_id"), filter.getType_id().getId()));
+
             if (filter.getBirthday() != null)
                 predicates.add(builder.equal(root.get("birthday"), filter.getBirthday()));
 

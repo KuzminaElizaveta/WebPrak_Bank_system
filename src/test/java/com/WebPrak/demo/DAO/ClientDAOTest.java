@@ -68,11 +68,14 @@ public class ClientDAOTest {
         Clients personNotExist = clientDAO.getById(666L);
         assertNull(personNotExist);
 
-        ClientDAO.Filter f = new ClientDAO.Filter("not", "not", "not", "not", date);
+        Client_type person = new Client_type( "Person");
+        ClientDAO.Filter f = new ClientDAO.Filter("not", "not", "not", "not", person, date);
         List<Clients> l = clientDAO.getByFilter(f);
         assertEquals(0, l.size());
 
-        ClientDAO.Filter f2 = new ClientDAO.Filter( "Кто-то Там 1", "Street 1", "+79200526042", "email", date_cool);
+        Clients a = clientDAO.getById(1L);
+        Client_type typeee = a.getType_id();
+        ClientDAO.Filter f2 = new ClientDAO.Filter( "Кто-то Там 1", "Street 1", "+79200526042", "email", typeee, date_cool);
         List<Clients> l2 = clientDAO.getByFilter(f2);
         assertEquals(1, l2.size());
 

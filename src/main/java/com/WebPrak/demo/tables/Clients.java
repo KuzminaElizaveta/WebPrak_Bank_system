@@ -39,7 +39,7 @@ public class Clients implements CommonEntity<Long>{
     @NonNull
     private String email;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
     @ToString.Exclude
     @NonNull
@@ -47,7 +47,7 @@ public class Clients implements CommonEntity<Long>{
 
     @Column(nullable = false, name = "birthday")
     @NonNull
-    private Date birthday;
+    private LocalDate birthday;
 
     @OneToMany(mappedBy = "client_id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Accounts> accounts = new ArrayList<>();
