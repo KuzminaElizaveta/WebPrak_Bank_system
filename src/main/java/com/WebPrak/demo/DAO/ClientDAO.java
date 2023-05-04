@@ -26,7 +26,7 @@ public interface ClientDAO extends CommonDAO<Clients, Long>  {
         private String address;
         private String phone;
         private String email;
-        private Client_type type_id;
+        private List<Client_type> type_id;
         private LocalDate birthday;
     }
 

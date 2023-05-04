@@ -1,9 +1,11 @@
 .wrapper {
     background-color: rgba(123, 104, 238, 0.4);
     margin-left: -10px;
-    margin-right: -10px;
+    /*margin-right: -10px;*/
     margin-top: -30px;
     font-family: serif;
+    position: relative;
+    min-height: 100%;
 }
 
 .violet {
@@ -14,9 +16,6 @@
     font-family: 'Satisfy', cursive;
 }
 
-.eventFilters {
-    width: 100%;
-}
 
 #navbar ul {
     display: block;
@@ -66,15 +65,15 @@ html,
 body {
     height: 100%;
 }
-.wrapper {
-    position: relative;
-    min-height: 100%;
-}
+
 .content {
     padding-bottom: 90px;
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
+    position: absolute;
+    width: 100%;
+
 }
 .footer {
     position: absolute;
@@ -109,15 +108,15 @@ thead th:nth-child(3) {
 }
 
 thead th:nth-child(4) {
-    width: 15%;
+    width: 20%;
 }
 
 thead th:nth-child(5) {
-    width: 10%;
+    width: 20%;
 }
 
 thead th:nth-child(6) {
-    width: 15%;
+    width: 10%;
 }
 
 th, td {
@@ -159,10 +158,17 @@ tbody tr:nth-child(even) {
     transition: 0.2s;
     position: absolute;
     right: 10px;
-    top: 100px;
 }
 .button7:hover { background: rgba(123, 104, 238, 0.9); }
 .button7:active {
     background: rgba(123, 104, 238, 0.9);
     box-shadow: 0 3px rgba(123, 104, 238, 0.9) inset;
+}
+.clientsInfo {
+    width: 100%;
+    left: 10px;
+}
+.clientsFilters {
+    width: 100%;
+    left: 10px;
 }

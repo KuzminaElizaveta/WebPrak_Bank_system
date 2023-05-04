@@ -22,7 +22,7 @@ public class Client_typeDAOImplement extends CommonDAOImplement<Client_type, Lon
     }
 
     @Override
-    public Client_type getByFilter(Client_typeDAO.Filter filter) {
+    public List<Client_type> getByFilter(Client_typeDAO.Filter filter) {
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Client_type> criteriaQuery = builder.createQuery(Client_type.class);
@@ -35,7 +35,7 @@ public class Client_typeDAOImplement extends CommonDAOImplement<Client_type, Lon
             if (predicates.size() != 0)
                 criteriaQuery.where(predicates.toArray(new Predicate[0]));
 
-            return session.createQuery(criteriaQuery).getResultList().get(0);
+            return session.createQuery(criteriaQuery).getResultList();
         }
     }
 

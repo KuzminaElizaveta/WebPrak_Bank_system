@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface Client_typeDAO extends CommonDAO<Client_type, Long> {
 
-    Client_type getByFilter(Client_typeDAO.Filter filter);
+    List<Client_type> getByFilter(Client_typeDAO.Filter filter);
     @Getter
     @AllArgsConstructor
     @Builder

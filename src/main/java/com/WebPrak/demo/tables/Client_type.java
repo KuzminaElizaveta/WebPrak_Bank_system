@@ -28,4 +28,13 @@ public class Client_type implements CommonEntity<Long> {
 
     @OneToMany(mappedBy = "type_id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Clients> clients = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) { return false; }
+        if (obj.getClass() != this.getClass()) { return false; }
+        final Client_type other = (Client_type) obj;
+        return  (this.id == other.id) &&
+                (this.type.equals(other.type));
+    }
 }

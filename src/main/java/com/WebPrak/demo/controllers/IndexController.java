@@ -9,10 +9,10 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping(value = "/clients")
-    public String allPersons() {
-        return "clients";
-    }
+//    @RequestMapping(value = "/clients")
+//    public String allPersons() {
+//        return "clients";
+//    }
 
     @RequestMapping(value = "/accounts")
     public String allAccounts() {

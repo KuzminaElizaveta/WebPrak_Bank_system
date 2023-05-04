@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import org.junit.jupiter.api.*;
+import org.mockito.internal.matchers.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
@@ -49,8 +50,8 @@ public class ClientDAOTest {
     @Test
     void testSimpleManipulations() {
 
-        Date date = Date.valueOf(LocalDate.parse("12-11-2011", dateFormatter));
-        Date date_cool = Date.valueOf(LocalDate.parse("12-11-2018", dateFormatter));
+        LocalDate date = LocalDate.parse("12-11-2011", dateFormatter);
+        LocalDate date_cool = LocalDate.parse("12-11-2018", dateFormatter);
 
         List<Clients> personListAll = (List<Clients>) clientDAO.getAll();
         assertEquals(4, personListAll.size());
@@ -72,6 +73,10 @@ public class ClientDAOTest {
         ClientDAO.Filter f = new ClientDAO.Filter("not", "not", "not", "not", person, date);
         List<Clients> l = clientDAO.getByFilter(f);
         assertEquals(0, l.size());
+
+        Client_typeDAO.Filter k = new Client_typeDAO.Filter("");
+        Client_type t = client_typeDAO.getByFilter(k);
+        assertNull(t);
 
         Clients a = clientDAO.getById(1L);
         Client_type typeee = a.getType_id();
@@ -122,7 +127,7 @@ public class ClientDAOTest {
     @BeforeEach
     void beforeEach() {
         List<Clients> personList = new ArrayList<>();
-        Date birth = Date.valueOf(LocalDate.parse("12-11-2018", dateFormatter));
+        LocalDate birth = LocalDate.parse("12-11-2018", dateFormatter);
         List<Accounts> accountList = new ArrayList<>();
         Date date = Date.valueOf(LocalDate.parse("11-12-2010", dateFormatter));
 

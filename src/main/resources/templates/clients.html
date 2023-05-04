@@ -27,7 +27,7 @@
                 <input name="address" th:value="${param.address}" placeholder="Адрес"/>
                 <input name="phone" th:value="${param.phone}" placeholder="Телефон"/>
                 <input name="email" th:value="${param.email}" placeholder="Почта"/>
-                <input name="type" th:value="${param.type}" placeholder="Тип"/>
+                <input  name="type" th:value="${param.type}" placeholder="Тип" />
                 <input type="Date" id="birthday" name="birthday" th:value="${param.birthday}" placeholder="Дата рождения"/>
                 <input type="submit" value="Применить"/>
                 <input type="reset" value="Очистить"/>
@@ -52,9 +52,9 @@
                         <td>
                             <a th:text="${client.getFullname()}" th:href="'/client?client_id=' + ${client.getId()}"></a>
                         </td>
-                        <td th:text="${client.getAddress()}"></td>
-                        <td th:text="${client.getPhone()}"></td>
-                        <td th:text="${client.getEmail()}"></td>
+                        <td th:text="${client.getAddress()}"></td><br>
+                        <td th:text="${client.getPhone()}"></td><br>
+                        <td th:text="${client.getEmail()}"></td><br>
                         <td th:text="${client.getType_id().getType()}"></td>
                         <td th:text="${client.getBirthday()}"></td>
                     </tr>

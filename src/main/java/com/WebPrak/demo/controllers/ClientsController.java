@@ -32,7 +32,7 @@ public class ClientsController {
     @Autowired
     private final Client_typeDAOImplement client_typeDAO = new Client_typeDAOImplement();
 
-    @GetMapping("/client")
+    @GetMapping("/client")final
     public String clientPage(@RequestParam(name="client_id") Long client_id, Model model) {
         Clients client = clientDAO.getById(client_id);
         if (client == null) {
@@ -50,13 +50,22 @@ public class ClientsController {
                                @RequestParam(name="address", required = false) String address,
                                @RequestParam(name="phone", required = false) String phone,
                                @RequestParam(name="email", required = false) String email,
-                               @RequestParam(name="type", required = false) String type,
+                               @RequestParam(name="type", required = false, defaultValue = "") String type,
                                @RequestParam(name="birthday", required = false) LocalDate birthday,
                                Model model) {
-        Client_typeDAO.Filter k = new Client_typeDAO.Filter(type);
-        Client_type types = client_typeDAO.getByFilter(k);
-        ClientDAO.Filter f = new ClientDAO.Filter(fullname, address, phone, email, types, birthday);
-        Collection<Clients> clients = clientDAO.getByFilter(f);
+        List<Client_type> types;
+        Collection<Clients> clients;
+        if (type != "") {
+            Client_typeDAO.Filter k = new Client_typeDAO.Filter(type);
+            types = client_typeDAO.getByFilter(k);
+            ClientDAO.Filter f = new ClientDAO.Filter(fullname, address, phone, email, types, birthday);
+//        ClientDAO.Filter f = new ClientDAO.Filter(fullname, address, phone, email, types, birthday);
+            clients = clientDAO.getByFilter(f);
+        } else {
+            types = null;
+            clients = clientDAO.getAll();
+        }
+
 
         model.addAttribute("clients", clients);
         model.addAttribute("clientDAO", clientDAO);
