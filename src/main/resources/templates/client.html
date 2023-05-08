@@ -4,6 +4,7 @@
   <title>Клиент</title>
 
   <link rel="stylesheet" th:href="@{/style.css}">
+  <link rel="stylesheet" th:href="@{/client.css}">
   <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 
   <meta charset="utf-8">
@@ -24,7 +25,7 @@
       <span th:text="${client.getPhone()}"></span><br>
       <span th:text="${client.getEmail()}"></span><br>
       <span th:text="${client.getType_id().getType()}"></span><br>
-      <span th:text="${client.getBirthday()}"></span>
+      <span th:text="${#temporals.format(client.getBirthday(), 'dd MMMM yyyy')}"></span>
 
 
     </div>
@@ -32,6 +33,8 @@
       <input type="hidden" name="client_id" th:value="${client.getId()}"/>
       <button class="button7" type="submit">Удалить</button>
     </form>
+
+    <a class="button8" text="Edit" th:href="'/editclient?client_id=' + ${client.getId()}">Редактировать</a>
   </div>
 
 

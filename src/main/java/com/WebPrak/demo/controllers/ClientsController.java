@@ -73,27 +73,66 @@ public class ClientsController {
     }
 
     @RequestMapping(value="/add_new_client", method = RequestMethod.POST)
-    public String addEvent(@RequestParam(name="fullname", required = false) String fullname,
+    public String addClient(@RequestParam(name="fullname", required = false) String fullname,
                            @RequestParam(name="address", required = false) String address,
                            @RequestParam(name="phone", required = false) String phone,
                            @RequestParam(name="email", required = false) String email,
-                           @RequestParam(name="type", required = false) Client_type type,
+                           @RequestParam(name="type", required = false) String type,
                            @RequestParam(name="birthday", required = false) LocalDate birthday,
                            Model model) {
-        Clients newClient = new Clients(fullname, address, phone, email, type, birthday);
+        Client_type type1 = client_typeDAO.getByType(type);
+        Clients newClient = new Clients(fullname, address, phone, email ,type1, birthday);
         clientDAO.save(newClient);
         model.addAttribute("clients", clientDAO.getAll());
         model.addAttribute("clientDAO", clientDAO);
-        return "redirect:/client?clientID=" + newClient.getId().toString();
+        return "redirect:/client?client_id=" + newClient.getId().toString();
+    }
+
+    @RequestMapping(value="/edit_client", method = RequestMethod.POST)
+    public String editClient(@RequestParam(name="client_id", required = true) Long client_id,
+                            @RequestParam(name="fullname", required = false) String fullname,
+                            @RequestParam(name="address", required = false) String address,
+                            @RequestParam(name="phone", required = false) String phone,
+                            @RequestParam(name="email", required = false) String email,
+                            @RequestParam(name="type", required = false) String type,
+                            @RequestParam(name="birthday", required = false) LocalDate birthday,
+                            Model model) {
+
+        Clients client = clientDAO.getById(client_id);
+        client.setFullname(fullname);
+        client.setAddress(address);
+        client.setPhone(phone);
+        client.setEmail(email);
+        Client_type type_1 = client_typeDAO.getByType(type);
+        client.setType_id(type_1);
+        client.setBirthday(birthday);
+        clientDAO.update(client);
+
+        model.addAttribute("clients", clientDAO.getAll());
+        model.addAttribute("clientDAO", clientDAO);
+        return "redirect:/client?client_id=" + client.getId().toString();
     }
 
     @RequestMapping(value="/delete_client", method = RequestMethod.POST)
-    public String addClient(@RequestParam(name="client_id", required = true) Long clientID,
+    public String deleteClient(@RequestParam(name="client_id", required = true) Long clientID,
                            Model model) {
         clientDAO.deleteById(clientID);
         model.addAttribute("clients", clientDAO.getAll());
         model.addAttribute("clientDAO", clientDAO);
         return "redirect:/clients";
+    }
+
+    @RequestMapping(value = "editclient")
+    public String editclient(@RequestParam(name="client_id") Long client_id, Model model) {
+        Clients client = clientDAO.getById(client_id);
+        if (client == null) {
+            model.addAttribute("error_msg", "Not found by ID  = " + client_id);
+            return "error";
+        }
+
+        model.addAttribute("client", client);
+        model.addAttribute("clientDAO", clientDAO);
+        return "editclient";
     }
 
     @RequestMapping(value = "addclient")

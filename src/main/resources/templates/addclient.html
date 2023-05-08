@@ -4,6 +4,7 @@
     <title>Клиенты</title>
 
     <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/addClient.css}">
     <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 
     <meta charset="utf-8">
@@ -18,7 +19,7 @@
     <div th:replace="general :: page-header"></div>
 
     <div class="content">
-        <div class="clientDesc">
+        <div class="addClient">
             <form th:action="@{/add_new_client}" method="post">
                 <input name="fullname" placeholder="fullname"/>
                 <input name="address" placeholder="address"/>

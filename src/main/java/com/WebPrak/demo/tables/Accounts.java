@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Account")
@@ -42,7 +43,7 @@ public class Accounts implements CommonEntity<Long>{
 
     @Column(nullable = false, name = "credit")
     @NonNull
-    private Date credit;
+    private LocalDate credit;
 
     @Column(nullable = false, name = "percent")
     @NonNull

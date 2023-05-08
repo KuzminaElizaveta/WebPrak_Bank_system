@@ -114,10 +114,10 @@ public class OperationDAOTest {
     void beforeEach() {
 
         List<Accounts> accountList = new ArrayList<>();
-        Date date = Date.valueOf(LocalDate.parse("11-12-2010", dateFormatter));
+        LocalDate date = LocalDate.parse("11-12-2010", dateFormatter);
 
         List<Clients> personList = new ArrayList<>();
-        Date birth = Date.valueOf(LocalDate.parse("12-11-2018", dateFormatter));
+        LocalDate birth = LocalDate.parse("12-11-2018", dateFormatter);
 
         Client_type person = new Client_type( "Person");
         client_typeDAO.save(person);

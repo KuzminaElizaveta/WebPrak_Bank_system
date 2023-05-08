@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Клиенты</title>
+
+  <link rel="stylesheet" th:href="@{/style.css}">
+  <link rel="stylesheet" th:href="@{/editClient.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+
+  <meta charset="utf-8">
+</head>
+
+
+<body>
+
+
+
+<div class="wrapper">
+  <div th:replace="general :: page-header"></div>
+
+  <div class="content">
+    <div class="desc">
+      <form th:action="@{/edit_client}" method="post">
+        <input type="hidden" name="client_id" th:value="${client.getId()}"/>
+        <input name="fullname" th:value="${client.getFullname()}" text="Fullname" placeholder="fullname"/>
+        <input name="address" th:value="${client.getAddress()}" text="Address" placeholder="address"/>
+        <input name="phone" th:value="${client.getPhone()}" text="Phone" placeholder="phone"/>
+        <input name="email" th:value="${client.getEmail()}" text="Email" placeholder="email"/>
+        <input name="type" th:value="${client.getType_id().getType()}" text="Type" placeholder="type"/>
+        <input type="date" name="birthday" th:value="${client.getBirthday()}" text="Birthday" placeholder="birthday"/>
+        <input type="submit" value="Submit"/>
+      </form>
+    </div>
+  </div>
+
+
+  <div th:replace="general :: footer"></div>
+
+</div>
+</body>
+</html>

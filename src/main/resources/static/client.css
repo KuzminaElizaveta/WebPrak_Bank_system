@@ -1,0 +1,49 @@
+.clientDesc {
+    width: 95%;
+    position: static;
+    margin: 20px 0.5%;
+}
+
+.button7 {
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px black;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    background: rgba(123, 104, 238, 0.5);
+    box-shadow: 0 -3px rgba(123, 104, 238, 0.9) inset;
+    transition: 0.2s;
+    position: absolute;
+    right: 10px;
+    top: 60px;
+}
+
+.button7:hover { background: rgba(123, 104, 238, 0.9); }
+
+.button7:active {
+    background: rgba(123, 104, 238, 0.9);
+    box-shadow: 0 3px rgba(123, 104, 238, 0.9) inset;
+}
+
+.button8 {
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px black;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    background: rgba(123, 104, 238, 0.5);
+    box-shadow: 0 -3px rgba(123, 104, 238, 0.9) inset;
+    transition: 0.2s;
+    position: absolute;
+    right: 10px;
+    top: 140px;
+}
+
+.button8:hover { background: rgba(123, 104, 238, 0.9); }
+
+.button8:active {
+    background: rgba(123, 104, 238, 0.9);
+    box-shadow: 0 3px rgba(123, 104, 238, 0.9) inset;
+}

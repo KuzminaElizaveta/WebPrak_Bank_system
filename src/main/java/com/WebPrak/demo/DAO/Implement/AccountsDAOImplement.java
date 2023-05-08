@@ -34,6 +34,12 @@ public class AccountsDAOImplement extends CommonDAOImplement<Accounts, Long> imp
             Root<Accounts> root = criteriaQuery.from(Accounts.class);
 
             List<Predicate> predicates = new ArrayList<>();
+            if (filter.getClient_id() != null)
+                predicates.add(root.get("client_id").in(filter.getClient_id()));
+
+            if (filter.getAcc_type() != null)
+                predicates.add(root.get("Acc_type").in(filter.getAcc_type()));
+
             if (filter.getBalance() != null)
                 predicates.add(builder.equal(root.get("balance"), filter.getBalance()));
 

@@ -16,6 +16,9 @@ import java.time.LocalDate;
 
 public interface ClientDAO extends CommonDAO<Clients, Long>  {
 
+    List<Clients> getAllByName(String Name);
+    Clients getByName(String Name);
+
     List<Accounts> findAllAccountOfClient(Clients client);
     List<Clients> getByFilter(Filter filter);
     @Getter

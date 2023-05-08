@@ -4,6 +4,7 @@
     <title>Клиенты</title>
 
     <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/clients.css}">
     <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 
     <meta charset="utf-8">
@@ -18,8 +19,8 @@
     <div th:replace="general :: page-header"></div>
 
     <div class="content">
-        <h1>Клиенты</h1>
-        <a th:href="'/addclient'" class="button7">Добавить нового клиента</a>
+        <h1 class="header">Клиенты</h1>
+        <a th:href="@{/addclient}" class="button7">Добавить нового клиента</a>
         <div class="clientsFilters">
             Фильтры:
             <form action="/clients"  method="get">
@@ -52,9 +53,9 @@
                         <td>
                             <a th:text="${client.getFullname()}" th:href="'/client?client_id=' + ${client.getId()}"></a>
                         </td>
-                        <td th:text="${client.getAddress()}"></td><br>
-                        <td th:text="${client.getPhone()}"></td><br>
-                        <td th:text="${client.getEmail()}"></td><br>
+                        <td th:text="${client.getAddress()}"></td>
+                        <td th:text="${client.getPhone()}"></td>
+                        <td th:text="${client.getEmail()}"></td>
                         <td th:text="${client.getType_id().getType()}"></td>
                         <td th:text="${client.getBirthday()}"></td>
                     </tr>
