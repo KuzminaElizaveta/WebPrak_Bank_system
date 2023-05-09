@@ -27,7 +27,7 @@ public class AccountsDAOImplement extends CommonDAOImplement<Accounts, Long> imp
     }
 
     @Override
-    public List<Accounts> getByFilter(AccountsDAO.Filter filter) {
+    public List<Accounts> getByFilter(Filter filter) {
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Accounts> criteriaQuery = builder.createQuery(Accounts.class);
@@ -35,13 +35,14 @@ public class AccountsDAOImplement extends CommonDAOImplement<Accounts, Long> imp
 
             List<Predicate> predicates = new ArrayList<>();
             if (filter.getClient_id() != null)
-                predicates.add(root.get("client_id").in(filter.getClient_id()));
+                predicates.add(builder.equal(root.get("client_id"), filter.getClient_id()));
 
             if (filter.getAcc_type() != null)
-                predicates.add(root.get("Acc_type").in(filter.getAcc_type()));
+                predicates.add(builder.equal(root.get("acc_type_id"), filter.getAcc_type()));
 
             if (filter.getBalance() != null)
                 predicates.add(builder.equal(root.get("balance"), filter.getBalance()));
+
 
             if (filter.getCredit() != null)
                 predicates.add(builder.equal(root.get("credit"), filter.getCredit()));

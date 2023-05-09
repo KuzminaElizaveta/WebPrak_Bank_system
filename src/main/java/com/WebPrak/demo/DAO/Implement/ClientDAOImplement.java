@@ -36,9 +36,9 @@ public class ClientDAOImplement extends CommonDAOImplement<Clients, Long> implem
 
     @Override
     public Clients getByName(String name) {
-        List<Clients> types = this.getAllByName(name);
-        return types == null ? null :
-                types.size() == 1 ? types.get(0) : null;
+        List<Clients> clients= this.getAllByName(name);
+        return clients == null ? null :
+                clients.size() == 1 ? clients.get(0) : null;
     }
 
 
