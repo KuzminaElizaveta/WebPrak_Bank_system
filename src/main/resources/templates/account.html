@@ -4,6 +4,7 @@
     <title>Клиент</title>
 
     <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/account.css}">
     <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 
     <meta charset="utf-8">
@@ -18,6 +19,24 @@
     <div th:replace="general :: page-header"></div>
 
     <div class="content">
+        <div class="accDesc">
+            <h4 th:text="${account.getId}"></h4>
+            <span th:text="${account.getClient_id().getFullname()}"></span><br>
+            <span th:text="${account.getAcc_type_id().getType()}"></span><br>
+            <span th:text="${account.getBalance()}"></span><br>
+            <span th:text="${#temporals.format(account.getCredit(), 'dd MMMM yyyy')}"></span><br>
+            <span th:text="${account.getPercent()}"></span><br>
+            <span th:text="${account.getInterval()}"></span><br>
+            <span th:text="${account.getPeriod()}"></span><br>
+
+
+        </div>
+        <form method="post" action="/delete_account">
+            <input type="hidden" name="account_id" th:value="${account.getId()}"/>
+            <button class="button7" type="submit">Удалить</button>
+        </form>
+
+        <a class="button8" text="Edit" th:href="'/editaccount?account_id=' + ${account.getId()}">Редактировать</a>
     </div>
 
 

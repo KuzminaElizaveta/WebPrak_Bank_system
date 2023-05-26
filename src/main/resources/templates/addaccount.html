@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Клиенты</title>
+
+  <link rel="stylesheet" th:href="@{/style.css}">
+<!--  <link rel="stylesheet" th:href="@{/addClient.css}">-->
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+
+  <meta charset="utf-8">
+</head>
+
+
+<body>
+
+
+
+<div class="wrapper">
+  <div th:replace="general :: page-header"></div>
+
+  <div class="content">
+    <div class="addClient">
+      <form th:action="@{/add_new_account}" method="post">
+        <input name="client" placeholder="client"/>
+        <input name="type" placeholder="type"/>
+        <input name="balance" placeholder="balance"/>
+        <input type="Date" name="credit" placeholder="credit"/>
+        <input name="percent" placeholder="percent"/>
+        <input name="interval" placeholder="interval"/>
+        <input name="period" placeholder="period"/>
+        <input type="submit" value="Submit"/>
+      </form>
+    </div>
+  </div>
+
+
+  <div th:replace="general :: footer"></div>
+
+</div>
+</body>
+</html>

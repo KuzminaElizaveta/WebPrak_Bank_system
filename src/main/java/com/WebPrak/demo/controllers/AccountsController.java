@@ -95,7 +95,7 @@ public class AccountsController {
     }
 
     @RequestMapping(value="/edit_account", method = RequestMethod.POST)
-    public String editClient(@RequestParam(name="account_id", required = true) Long account_id,
+    public String editAccount(@RequestParam(name="account_id", required = true) Long account_id,
                              @RequestParam(name="client", required = false) String client,
                              @RequestParam(name="type", required = false) String type,
                              @RequestParam(name="balance", required = false) Float balance,

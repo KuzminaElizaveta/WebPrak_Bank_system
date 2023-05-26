@@ -40,15 +40,17 @@ public class AccountsDAOImplement extends CommonDAOImplement<Accounts, Long> imp
             if (filter.getAcc_type() != null)
                 predicates.add(builder.equal(root.get("acc_type_id"), filter.getAcc_type()));
 
-            if (filter.getBalance() != null)
+            if (filter.getBalance() != null) {
                 predicates.add(builder.equal(root.get("balance"), filter.getBalance()));
+            }
 
 
             if (filter.getCredit() != null)
                 predicates.add(builder.equal(root.get("credit"), filter.getCredit()));
 
-            if (filter.getPercent() != null)
+            if (filter.getPercent() != null) {
                 predicates.add(builder.equal(root.get("percent"), filter.getPercent()));
+            }
 
             if (filter.getInterval() != null)
                 predicates.add(builder.equal(root.get("interval"), filter.getInterval()));
