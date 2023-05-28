@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Клиент</title>
+
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/operation.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+
+    <meta charset="utf-8">
+</head>
+
+
+<body>
+
+
+
+<div class="wrapper">
+    <div th:replace="general :: page-header"></div>
+
+    <div class="content">
+        <div class="opDesc">
+            <h2 th:text="${operation.getAccount_id().getId()}"></h2>
+            Отделение: <b><span th:text="${operation.getDepartment_id().getId()}"></span><br></b>
+            Тип: <b><span th:text="${operation.getOp_type_id().getType()}"></span><br></b>
+            Сумма операции: <b><span th:text="${operation.getAmount()}"></span><br></b>
+            Дата совершения операции: <b><span th:text="${#temporals.format(operation.getDate(), 'dd MMMM yyyy HH:MM')}"></span></b>
+
+
+        </div>
+    </div>
+
+
+    <div th:replace="general :: footer"></div>
+
+</div>
+
+
+
+</body>
+</html>

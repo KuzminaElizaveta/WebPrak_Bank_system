@@ -4,7 +4,7 @@
   <title>Счета</title>
 
   <link rel="stylesheet" th:href="@{/style.css}">
-<!--  <link rel="stylesheet" th:href="@{/editClient.css}">-->
+  <link rel="stylesheet" th:href="@{/editClient.css}">
   <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 
   <meta charset="utf-8">
@@ -22,8 +22,8 @@
     <div class="desc">
       <form th:action="@{/edit_account}" method="post">
         <input type="hidden" name="account_id" th:value="${account.getId()}"/>
-        <input name="client" th:value="${account.getClient_id().getFullname()}" text="Client" placeholder="client"/>
-        <input name="type" th:value="${account.getAcc_type_id().getType()}" text="Type" placeholder="type"/>
+<!--        <input name="client" th:value="${account.getClient_id().getFullname()}" text="Client" placeholder="client"/>-->
+<!--        <input name="type" th:value="${account.getAcc_type_id().getType()}" text="Type" placeholder="type"/>-->
         <input name="balance" th:value="${account.getBalance()}" text="Balance" placeholder="balance"/>
         <input type="Date" name="credit" th:value="${account.getCredit()}" text="Credit" placeholder="credit"/>
         <input name="percent" th:value="${account.getPercent()}" text="Percent" placeholder="percent"/>

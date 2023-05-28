@@ -25,13 +25,13 @@ public class Accounts implements CommonEntity<Long>{
     @Column(nullable = false, name = "account_id")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne( fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     @ToString.Exclude
     @NonNull
     private Clients client_id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne( fetch = FetchType.EAGER)
     @JoinColumn(name = "acc_type_id")
     @ToString.Exclude
     @NonNull
@@ -58,5 +58,22 @@ public class Accounts implements CommonEntity<Long>{
     private Integer period;
 
     @OneToMany(mappedBy = "account_id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Operations> clients = new ArrayList<>();
+    private List<Operations> operations = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) { return false; }
+        if (obj.getClass() != this.getClass()) { return false; }
+        final Accounts other = (Accounts) obj;
+        return  (this.id.equals(other.id)) &&
+                (this.client_id.equals(other.client_id)) &&
+                (this.acc_type_id.equals(other.acc_type_id)) &&
+                (this.balance.equals(other.balance)) &&
+                (this.credit.equals(other.credit)) &&
+                (this.percent.equals(other.percent)) &&
+                (this.interval.equals(other.interval)) &&
+                (this.period.equals(other.period))
+                ;
+    }
+
 }

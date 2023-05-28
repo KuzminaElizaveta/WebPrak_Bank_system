@@ -20,12 +20,12 @@
 
   <div class="content">
     <div class="clientDesc">
-      <h4 th:text="${client.getFullname()}"></h4>
-      <span th:text="${client.getAddress()}"></span><br>
-      <span th:text="${client.getPhone()}"></span><br>
-      <span th:text="${client.getEmail()}"></span><br>
-      <span th:text="${client.getType_id().getType()}"></span><br>
-      <span th:text="${#temporals.format(client.getBirthday(), 'dd MMMM yyyy')}"></span>
+      <h2 th:text="${client.getFullname()}"></h2>
+      Адрес регистрации: <b><span th:text="${client.getAddress()}"></span><br></b>
+      Контактный номер: <b><span th:text="${client.getPhone()}"></span><br></b>
+      Адрес электронной почты: <b><span th:text="${client.getEmail()}"></span><br></b>
+      Тип: <b><span th:text="${client.getType_id().getType()}"></span><br></b>
+      Дата рождения: <b><span th:text="${#temporals.format(client.getBirthday(), 'dd MMMM yyyy')}"></span></b>
 
 
     </div>
@@ -35,6 +35,25 @@
     </form>
 
     <a class="button8" text="Edit" th:href="'/editclient?client_id=' + ${client.getId()}">Редактировать</a>
+
+    <div class="acc">
+      <h4>Все счета клиента</h4>
+      <table>
+        <thead>
+        <tr>
+          <th>№</th><th>Тип</th><th>Баланс</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="acc, iter: ${t_acc}"  th:onclick="|location.href='@{/account(type='accounts',account_id=${acc?.getId()})}'|">
+          <td th:text="${acc?.getId()}"></td>
+          <td th:text="${acc?.getAcc_type_id().getType()}"></td>
+          <td th:text="${acc?.getBalance()}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 
 

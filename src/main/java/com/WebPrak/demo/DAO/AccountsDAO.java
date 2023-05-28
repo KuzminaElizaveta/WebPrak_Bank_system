@@ -12,6 +12,7 @@ import java.time.LocalDate;
 
 import java.util.List;
 public interface AccountsDAO extends CommonDAO<Accounts, Long>{
+
     List<Accounts> getByFilter(AccountsDAO.Filter filter);
     @Getter
     @AllArgsConstructor

@@ -52,4 +52,19 @@ public class Clients implements CommonEntity<Long>{
     @OneToMany(mappedBy = "client_id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Accounts> accounts = new ArrayList<>();
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) { return false; }
+        if (obj.getClass() != this.getClass()) { return false; }
+        final Clients other = (Clients) obj;
+        return  (this.id.equals(other.id)) &&
+                (this.fullname.equals(other.fullname)) &&
+                (this.address.equals(other.address)) &&
+                (this.phone.equals(other.phone)) &&
+                (this.email.equals(other.email)) &&
+                (this.type_id.equals(other.type_id)) &&
+                (this.birthday.equals(other.birthday))
+                ;
+    }
 }

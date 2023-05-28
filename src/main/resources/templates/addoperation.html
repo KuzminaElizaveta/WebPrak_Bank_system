@@ -20,14 +20,12 @@
 
   <div class="content">
     <div class="addClient">
-      <form th:action="@{/add_new_account}" method="post">
-        <input name="client" placeholder="владелец"/>
+      <form th:action="@{/add_new_operation}" method="post">
+        <input name="account" placeholder="счёт"/>
+        <input name="department" placeholder="отделение"/>
         <input name="type" placeholder="тип"/>
-        <input name="balance" placeholder="баланс"/>
-        <input type="Date" name="credit" placeholder="дата открытия"/>
-        <input name="percent" placeholder="процент"/>
-        <input name="interval" placeholder="интервал процентирования"/>
-        <input name="period" placeholder="период"/>
+        <input type="Date" name="date" placeholder="дата совершения"/>
+        <input name="amount" placeholder="сумма"/>
         <input type="submit" value="Submit"/>
       </form>
     </div>

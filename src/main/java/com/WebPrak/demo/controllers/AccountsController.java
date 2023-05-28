@@ -49,6 +49,9 @@ public class AccountsController {
             return "errors";
         }
 
+        Collection<Operations> t_op = account.getOperations();
+        model.addAttribute("t_op", t_op);
+
         model.addAttribute("account", account);
         model.addAttribute("accountDAO", accountDAO);
         return "account";
@@ -77,7 +80,7 @@ public class AccountsController {
     }
 
     @RequestMapping(value="/add_new_account", method = RequestMethod.POST)
-    public String addEvent(@RequestParam(name="client", required = false) String client,
+    public String addAccount(@RequestParam(name="client", required = false) String client,
                            @RequestParam(name="type", required = false) String type,
                            @RequestParam(name="balance", required = false) Float balance,
                            @RequestParam(name="credit", required = false) LocalDate credit,
@@ -88,6 +91,7 @@ public class AccountsController {
         Account_type types = account_typeDAO.getByType(type);
         Clients clients = clientDAO.getByName(client);
         Accounts newAccount = new Accounts(clients, types, balance, credit ,percent, interval, period);
+        clientDAO.update(clients);
         accountDAO.save(newAccount);
         model.addAttribute("accounts", accountDAO.getAll());
         model.addAttribute("accountDAO", accountDAO);
@@ -96,8 +100,8 @@ public class AccountsController {
 
     @RequestMapping(value="/edit_account", method = RequestMethod.POST)
     public String editAccount(@RequestParam(name="account_id", required = true) Long account_id,
-                             @RequestParam(name="client", required = false) String client,
-                             @RequestParam(name="type", required = false) String type,
+//                             @RequestParam(name="client", required = false) String client,
+//                             @RequestParam(name="type", required = false) String type,
                              @RequestParam(name="balance", required = false) Float balance,
                              @RequestParam(name="credit", required = false) LocalDate credit,
                              @RequestParam(name="percent", required = false) Float percent,
@@ -107,16 +111,19 @@ public class AccountsController {
 
         Accounts account = accountDAO.getById(account_id);
 
-        Account_type types = account_typeDAO.getByType(type);
-        Clients clients = clientDAO.getByName(client);
-        account.setClient_id(clients);
-        account.setAcc_type_id(types);
+////        Account_type types = account_typeDAO.getByType(type);
+//        Clients clients = clientDAO.getByName(client);
+//        clients.getAccounts().add(account);
+//        account.setClient_id(clients);
+////        account.setAcc_type_id(types);
         account.setBalance(balance);
         account.setCredit(credit);
         account.setPercent(percent);
         account.setInterval(interval);
         account.setPeriod(period);
+
         accountDAO.update(account);
+
 
         model.addAttribute("accounts", accountDAO.getAll());
         model.addAttribute("accountDAO", accountDAO);

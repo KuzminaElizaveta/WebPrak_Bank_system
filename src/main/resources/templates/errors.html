@@ -17,6 +17,18 @@
     <div th:replace="general :: page-header"></div>
 
     <div class="content">
+        <div class="bg-image error-page">
+            <div class="container">
+                <h1>Страница не найдена</h1>
+                <p>К сожалению, мы не можем найти то, что вы ищете. Хотите перейти на
+                    <a href="/">главную страницу</a>?
+                </p>
+            </div>
+        </div>
+
+        <div class="indent">
+            <span class="centered" th:text="${error_msg}"></span>
+        </div>
 
     </div>
 
@@ -30,3 +42,6 @@
 
 </body>
 </html>
+
+
+

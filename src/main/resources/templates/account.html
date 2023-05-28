@@ -20,24 +20,45 @@
 
     <div class="content">
         <div class="accDesc">
-            <h4 th:text="${account.getId}"></h4>
-            <span th:text="${account.getClient_id().getFullname()}"></span><br>
-            <span th:text="${account.getAcc_type_id().getType()}"></span><br>
-            <span th:text="${account.getBalance()}"></span><br>
-            <span th:text="${#temporals.format(account.getCredit(), 'dd MMMM yyyy')}"></span><br>
-            <span th:text="${account.getPercent()}"></span><br>
-            <span th:text="${account.getInterval()}"></span><br>
-            <span th:text="${account.getPeriod()}"></span><br>
+            <h2 th:text="${account.getId}"></h2>
+            Владелец счета: <b><span th:text="${account.getClient_id().getFullname()}"></span><br></b>
+            Тип: <b><span th:text="${account.getAcc_type_id().getType()}"></span><br></b>
+            Баланс: <b><span th:text="${account.getBalance()}"></span><br></b>
+            Дата открытия: <b><span th:text="${#temporals.format(account.getCredit(), 'dd MMMM yyyy')}"></span><br></b>
+            Процент: <b><span th:text="${account.getPercent()}"></span><br></b>
+            Интервал процентирования: <b><span th:text="${account.getInterval()}"></span><br></b>
+            Период: <b><span th:text="${account.getPeriod()}"></span><br></b>
 
 
         </div>
         <form method="post" action="/delete_account">
             <input type="hidden" name="account_id" th:value="${account.getId()}"/>
-            <button class="button7" type="submit">Удалить</button>
+            <button class="button7" type="submit">Закрыть</button>
         </form>
 
         <a class="button8" text="Edit" th:href="'/editaccount?account_id=' + ${account.getId()}">Редактировать</a>
+        <div class="op">
+            <h4> Все операции по счету </h4>
+            <table>
+                <thead>
+                <tr>
+                    <th>№</th><th>Отделение</th><th>Тип</th><th>Сумма</th><th>Дата</th><th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="op, iter: ${t_op}" th:onclick="|location.href='@{/operation(type='operations',operation_id=${op?.getId()})}'|">
+                    <td th:text="${op?.getId()}"></td>
+                    <td th:text="${op?.getDepartment_id().getId()}"></td>
+                    <td th:text="${op?.getOp_type_id().getType()}"></td>
+                    <td th:text="${op?.getAmount()}"></td>
+                    <td th:text="${#temporals.format(op.getDate(), 'dd MMMM yyyy')}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+
 
 
     <div th:replace="general :: footer"></div>

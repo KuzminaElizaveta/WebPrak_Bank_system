@@ -35,6 +35,15 @@ public class OperationsDAOImplement extends CommonDAOImplement<Operations, Long>
             Root<Operations> root = criteriaQuery.from(Operations.class);
 
             List<Predicate> predicates = new ArrayList<>();
+            if (filter.getAccount() != null)
+                predicates.add(builder.equal(root.get("account_id"), filter.getAccount()));
+
+            if (filter.getDepartment() != null)
+                predicates.add(builder.equal(root.get("department_id"), filter.getDepartment()));
+
+            if (filter.getType() != null)
+                predicates.add(builder.equal(root.get("op_type_id"), filter.getType()));
+
             if (filter.getDate() != null)
                 predicates.add(builder.equal(root.get("date"), filter.getDate()));
 

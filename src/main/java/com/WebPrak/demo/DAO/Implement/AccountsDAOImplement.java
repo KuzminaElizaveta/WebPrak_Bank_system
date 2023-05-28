@@ -81,4 +81,8 @@ public class AccountsDAOImplement extends CommonDAOImplement<Accounts, Long> imp
             return null;
         }
     }
+
+    private String likeExpr(String param) {
+        return "%" + param + "%";
+    }
 }

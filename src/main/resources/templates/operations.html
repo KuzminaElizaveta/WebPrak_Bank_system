@@ -4,6 +4,8 @@
   <title>Операции</title>
 
   <link rel="stylesheet" th:href="@{/style.css}">
+  <link rel="stylesheet" th:href="@{/operations.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 
   <meta charset="utf-8">
 </head>
@@ -17,10 +19,50 @@
   <div th:replace="general :: page-header"></div>
 
   <div class="content">
+    <h1 class="header">Операции</h1>
+    <a th:href="@{/addoperation}" class="button7">Добавить операцию</a>
+    <div class="operationsFilters">
+      Фильтры:
+      <form action="/operations"  method="get">
+        <input name="account" th:value="${param.account}" placeholder="счёт"/>
+        <input name="department" th:value="${param.department}" placeholder="отделение"/>
+        <input name="type" th:value="${param.type}" placeholder="Тип"/>
+        <input type="Date" id="date" name="date" th:value="${param.date}" placeholder="Дата открытия"/>
+        <input name="amount" th:value="${param.amount}" placeholder="сумма"/>
+        <input type="submit" value="Применить"/>
+        <input type="reset" value="Очистить"/>
+      </form>
+    </div>
+
+    <div class="clientsInfo">
+      <table>
+        <thead>
+        <tr>
+          <th scope="col">№</th>
+          <th scope="col">Счёт</th>
+          <th scope="col">Отделение</th>
+          <th scope="col">Тип</th>
+          <th scope="col">Дата открытия</th>
+          <th scope="col">Сумма</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="operation, iter: ${operations}">
+          <td>
+            <a th:text="${operation.getId()}" th:href="'/operation?operation_id=' + ${operation.getId()}"></a>
+          </td>
+          <td th:text="${operation.getAccount_id().getId()}"></td>
+          <td th:text="${operation.getDepartment_id().getId()}"></td>
+          <td th:text="${operation.getOp_type_id().getType()}"></td>
+          <td th:text="${operation.getDate()}"></td>
+          <td th:text="${operation.getAmount()}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
 
   </div>
-
-
 
   <div th:replace="general :: footer"></div>
 
